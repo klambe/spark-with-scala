@@ -29,3 +29,12 @@ df.filter("Close > 480").show() //sql notation
 df.filter($"Close" < 480 && $"High" < 480).show() //scala $ notation
 println("**********SQL Notation***********")
 df.filter("Close < 480 AND High < 480").show() //sql notation
+
+//collect results into scala object
+val resultLowClose = df.filter($"Close" < 480 && $"High" < 480).collect()
+//equals operator == will crash spark...
+
+
+// Operations and Useful Functions
+// http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.functions$
+df.select(corr("High","Low")).show() //pearson correlation
